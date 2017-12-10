@@ -12,7 +12,6 @@ namespace BetterChatBot
         ITwitchClient client;
         ITwitchClient client2;
         private string channel1;
-        private string channel2;
         private string name;
         private string key;
 
@@ -92,12 +91,11 @@ namespace BetterChatBot
             Console.WriteLine($"Error!! {e.Error}");
         }
 
-        public TwitchChatBot(string name, string key, string channel1, string channel2)
+        public TwitchChatBot(string name, string key, string channel1)
         {
             this.name = name;
             this.key = name;
             this.channel1 = channel1;
-            this.channel2 = channel2;
         }
     }
 }
