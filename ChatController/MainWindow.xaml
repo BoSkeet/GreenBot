@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid HorizontalAlignment="Right" Background="#FF424242" Width="515" Height="320" VerticalAlignment="Top" Margin="0,0,2,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="137*"/>
+            <RowDefinition Height="183*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Height="126" Margin="133,25.873,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="193" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Left" Height="34" Margin="133,10,0,0" TextWrapping="Wrap" Text="Enter UserName" VerticalAlignment="Top" Width="193" Background="#FF003BB9" FontFamily="Tw Cen MT" FontWeight="Bold" FontStyle="Italic" FontSize="24" OpacityMask="Black" Opacity="0.6" AutomationProperties.IsOffscreenBehavior="Onscreen"/>
+        <TextBox HorizontalAlignment="Left" Height="34" Margin="133,49,0,0" TextWrapping="Wrap" Text="Enter Userkey" VerticalAlignment="Top" Width="193" Background="#FF003BB9" FontFamily="Tw Cen MT" FontWeight="Bold" FontStyle="Italic" FontSize="24" OpacityMask="Black" Opacity="0.6" AutomationProperties.IsOffscreenBehavior="Onscreen"/>
+        <TextBox HorizontalAlignment="Left" Height="34" Margin="133,88,0,0" TextWrapping="Wrap" Text="Enter UserName" VerticalAlignment="Top" Width="193" Background="#FF003BB9" FontFamily="Tw Cen MT" FontWeight="Bold" FontStyle="Italic" FontSize="24" OpacityMask="Black" Opacity="0.6" AutomationProperties.IsOffscreenBehavior="Onscreen"/>
+        <Label Content="Offline" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.525,0.584" Width="79" Background="#FFA2A2A2" FontFamily="Tw Cen MT" FontSize="22" Height="34" FontWeight="Bold"/>
+
     </Grid>
 </Window>

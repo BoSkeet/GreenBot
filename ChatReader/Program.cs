@@ -9,11 +9,24 @@ namespace ConsoleWriterMain
 {
     public class Program
     {
+        /// <summary>
+        /// when user types in Console send it to the chat
+        /// </summary>
+        static string userCommand;
+
         static void Main(string[] args)
         {
             BetterChatBot.TwitchChatBot twitchChatBot = new BetterChatBot.TwitchChatBot();
 
-            Console.ReadLine();
+            do
+            {
+                userCommand = Console.ReadLine();
+                if (userCommand!=null)
+                {
+                    twitchChatBot.SendMessage(TwitchInfo.ChannelName, userCommand);
+                }
+            } while (true);
+ 
         }
 
         public string ReturnPath()

@@ -11,14 +11,31 @@ namespace BetterChatBot
 {
     public class TwitchChatBot
     {
-        
+
+#region internal and external variables
         private readonly ConnectionCredentials credentials = new ConnectionCredentials(Name, Key);
         private ITwitchClient client;
         public static string Channel { get; private set; } = TwitchInfo.ChannelName;
         public static string Name { get; private set; } = TwitchInfo.BotUsername;
-        private static string Key { get; set; } = TwitchInfo.BotToken;
+        private static string Key { get; } = TwitchInfo.BotToken;
         private static readonly string ReceiveString = "this is a random message";
         private static readonly string SenderString = "this is a random response";
+
+        /// <summary>
+        /// Message that the bot will send
+        /// </summary>
+        public string UserMessageSend { get; set; }
+
+        /// <summary>
+        /// Message that the bot responds to
+        /// </summary>
+        public string UserMessageKey { get; set; }
+
+        /// <summary>
+        /// Channel currently connected to
+        /// </summary>
+        public string UserChannel { get; set; }
+#endregion
 
         public TwitchChatBot()
         {
@@ -40,8 +57,8 @@ namespace BetterChatBot
 
             client.Connect();
         }
-        
-        //start -- client events
+
+#region client events
         private void Client_OnWhisperSent(object sender, OnWhisperSentArgs e)
         {
             throw new NotImplementedException();
@@ -64,6 +81,11 @@ namespace BetterChatBot
             Console.WriteLine($"joined {e.AutoJoinChannel}");
         }
 
+        /// <summary>
+        /// Write all activity to Console 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
             if (e.ChatMessage.Message.StartsWith(ReceiveString, StringComparison.InvariantCultureIgnoreCase))
@@ -81,12 +103,37 @@ namespace BetterChatBot
                 Console.WriteLine("message from -- {0}: {1}", e.ChatMessage.DisplayName, e.ChatMessage.Message);
             }
         }
-        //end -- client events
+#endregion
 
+#region public functions
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Channel"></param>
+        /// <param name="message"></param>
+        public void SendMessage(string Channel, string message)
+        {
+            client.SendMessage(Channel, message);
+        }
+
+        /// <summary>
+        /// Send whisper to another user 
+        /// </summary>
+        /// <param name="Receiver">Receiver of message</param>
+        /// <param name="message">Message to be sent</param>
+        public void SendWhisper(string Receiver, string message)
+        {
+            client.SendWhisper(Receiver, message);
+
+        }
         internal void Disconnect()
         {
             Console.WriteLine("Disconnecting");
         }
+
+        private void ConsoleChatFormat() { }
+
+        private void ConsoleInformFormat() { }
 
         private void Client_OnLog(object sender, OnLogArgs e)
         {
@@ -97,5 +144,7 @@ namespace BetterChatBot
         {
             Console.WriteLine($"Error!! {e.Error}");
         }
+#endregion
+        
     }
 }
