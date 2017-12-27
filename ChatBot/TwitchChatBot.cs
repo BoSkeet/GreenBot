@@ -5,31 +5,33 @@ using TwitchLib.Events.Client;
 using TwitchLib.Models.API.v5;
 using System.Resources;
 using GreenBot_Base;
-using System.Threading.Tasks;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System.Diagnostics;
 
 namespace BetterChatBot
 {
-    internal class TwitchChatBot
+    public class TwitchChatBot
     {
         
-        private readonly ConnectionCredentials credentials = new ConnectionCredentials(TwitchInfo.BotUsername, TwitchInfo.BotToken);
+        private readonly ConnectionCredentials credentials = new ConnectionCredentials(Name, Key);
         private ITwitchClient client;
-        private static string channel;
-        private static string name;
-        private static string key;
+        public static string Channel { get; private set; } = TwitchInfo.ChannelName;
+        public static string Name { get; private set; } = TwitchInfo.BotUsername;
+        private static string Key { get; set; } = TwitchInfo.BotToken;
+        private static readonly string ReceiveString = "this is a random message";
+        private static readonly string SenderString = "this is a random response";
 
-        internal void Connect()
+        public TwitchChatBot()
+        {
+            Connect();
+        }
+
+        public void Connect()
         {
             /*ConsoleWriterMain.Program consoleWriter = new ConsoleWriterMain.Program();
             Process.Start(consoleWriter.ReturnPath() + "\\ConsoleWriterMain.exe");
             Console.ReadLine();*/
 
-            client = new TwitchClient(credentials, TwitchInfo.ChannelName, logging: false);
+            client = new TwitchClient(credentials, Channel, logging: false);
 
             client.OnJoinedChannel += Client_OnJoinedChannel;
             client.OnMessageReceived += Client_OnMessageReceived;
@@ -38,14 +40,7 @@ namespace BetterChatBot
 
             client.Connect();
         }
-
-        public TwitchChatBot(string _name, string _key, string _channel)
-        {
-            name = _name;
-            key = _key;
-            channel = _channel;
-        }
-
+        
         //start -- client events
         private void Client_OnWhisperSent(object sender, OnWhisperSentArgs e)
         {
@@ -54,26 +49,36 @@ namespace BetterChatBot
 
         private void Client_OnMessageSent(object sender, OnMessageSentArgs e)
         {
-            throw new NotImplementedException();
+            //Console.WriteLine("received message from {0}, chatting: {1}: ", e.ChatMessage.DisplayName, $" {SenderString}, {e.ChatMessage.DisplayName}");
         }
 
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
         {
             client.SendMessage($"LUL {e.Channel}");
+            Console.WriteLine("Joined Channel: {0}", e.Channel);
         }
 
         private void Client_OnConnected(object sender, OnConnectedArgs e)
         {
             client.SendMessage($"EleGiggle {e.AutoJoinChannel}");
-            
+            Console.WriteLine($"joined {e.AutoJoinChannel}");
         }
 
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
-            if (e.ChatMessage.Message.StartsWith("LUL", StringComparison.InvariantCultureIgnoreCase))
+            if (e.ChatMessage.Message.StartsWith(ReceiveString, StringComparison.InvariantCultureIgnoreCase))
             {
-                client.SendMessage($"FailFish {e.ChatMessage.DisplayName}");
-                Console.WriteLine("received message from {0}, chatting: {1}: ", e.ChatMessage.DisplayName, $"hello {e.ChatMessage.DisplayName}");
+                client.SendMessage($"{SenderString}, {e.ChatMessage.DisplayName}");
+                Console.WriteLine("message from: {0}\n-- chatting: {1}: ", e.ChatMessage.DisplayName, $" {SenderString}, {e.ChatMessage.DisplayName}");
+            }
+            else if (e.ChatMessage.Message.Equals("hello greenbot"))
+            {
+                client.SendMessage($"hello {e.ChatMessage.DisplayName}");
+                Console.WriteLine("message from: {0}\n-- chatting: {1}: ", e.ChatMessage.DisplayName, $"hello, {e.ChatMessage.DisplayName}");
+            }
+            else
+            {
+                Console.WriteLine("message from -- {0}: {1}", e.ChatMessage.DisplayName, e.ChatMessage.Message);
             }
         }
         //end -- client events
@@ -92,6 +97,5 @@ namespace BetterChatBot
         {
             Console.WriteLine($"Error!! {e.Error}");
         }
-
     }
 }

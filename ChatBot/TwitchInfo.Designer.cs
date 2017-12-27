@@ -22,7 +22,7 @@ namespace GreenBot_Base {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TwitchInfo {
+    public class TwitchInfo {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace GreenBot_Base {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GreenBot_Base.TwitchInfo", typeof(TwitchInfo).Assembly);
@@ -51,7 +51,7 @@ namespace GreenBot_Base {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace GreenBot_Base {
         /// <summary>
         ///   Looks up a localized string similar to oauth:hvsmvuaxk35lc1eop1vgxqonhmfrl3.
         /// </summary>
-        internal static string BotToken {
+        public static string BotToken {
             get {
                 return ResourceManager.GetString("BotToken", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace GreenBot_Base {
         /// <summary>
         ///   Looks up a localized string similar to aRussianHacker.
         /// </summary>
-        internal static string BotUsername {
+        public static string BotUsername {
             get {
                 return ResourceManager.GetString("BotUsername", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace GreenBot_Base {
         /// <summary>
         ///   Looks up a localized string similar to aRussianHacker.
         /// </summary>
-        internal static string ChannelName {
+        public static string ChannelName {
             get {
                 return ResourceManager.GetString("ChannelName", resourceCulture);
             }
