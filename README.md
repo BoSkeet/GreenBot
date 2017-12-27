@@ -1,7 +1,7 @@
 # GreenBot
 
 
-###This is a naive chat bot using events and api calls through TwitchLib
+####This is a naive chat bot using events and api calls through TwitchLib
 
 ChatReader 
 - Maybe basic stop/stall functionality
