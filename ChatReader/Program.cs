@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GreenBot_Base;
 
 namespace ConsoleWriterMain
 {
@@ -10,7 +11,7 @@ namespace ConsoleWriterMain
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Working");
+            BetterChatBot.TwitchChatBot twitchChatBot = new BetterChatBot.TwitchChatBot();
 
             Console.ReadLine();
         }

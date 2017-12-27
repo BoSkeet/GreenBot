@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C7A9147-15E9-4BED-B2FE-CCF9340BC820}</ProjectGuid>
+    <ProjectGuid>{203BDE41-6EE7-457B-B2BA-13859BDD94AD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleWriter</RootNamespace>
-    <AssemblyName>ConsoleWriter</AssemblyName>
+    <RootNamespace>ConsoleWriterMain</RootNamespace>
+    <AssemblyName>ConsoleWriterMain</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CWriter.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GreenBot-Base\GreenBot-Base.csproj">
+      <Project>{3d2d3bbe-ba5f-4657-be42-331410604a21}</Project>
+      <Name>GreenBot-Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
