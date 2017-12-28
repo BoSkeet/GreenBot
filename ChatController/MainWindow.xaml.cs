@@ -20,9 +20,42 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// when user types in Console send it to the chat
+        /// </summary>
+        static string userCommand;
+
+        /// <summary>
+        /// read only array of strings for Bot keywords
+        /// </summary>
+        private static readonly string[] reservedWords = new string[] { "w", "stop", "close", "enter" };
+
+        public bool isOnline = false;
+
         public MainWindow()
         {
             InitializeComponent();
+             
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            userNameTB.Text = 
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
