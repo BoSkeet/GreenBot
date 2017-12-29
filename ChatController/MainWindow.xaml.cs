@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GreenBot_Base;
 
 namespace WpfApp1
 {
@@ -30,12 +31,19 @@ namespace WpfApp1
         /// </summary>
         private static readonly string[] reservedWords = new string[] { "w", "stop", "close", "enter" };
 
+        /// <summary>
+        /// Currently only supports one bot 
+        /// TODO: multiple bot support?
+        /// </summary>
+        TwitchChatBot.TwitchChatBot twitchChatBot = new TwitchChatBot.TwitchChatBot();
+
         public bool isOnline = false;
 
         public MainWindow()
         {
             InitializeComponent();
-             
+
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -56,6 +64,44 @@ namespace WpfApp1
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void messageCommand(string commandArgs)
+        {
+            TwitchChatBot.TwitchChatBot twitchChatBot = new TwitchChatBot.TwitchChatBot();
+            string[] messageArgs;
+            userCommand = Console.ReadLine();
+
+            // determine if the command is a message, whisper or a command
+            if (!reservedWords.Contains(userCommand))
+            {
+                twitchChatBot.SendMessage(TwitchInfo.ChannelName, userCommand);
+            }
+            // command - whisper
+            else if (userCommand == "w")
+            {
+                EnterCommand:
+
+                Console.WriteLine("BOT -- Recipient,Message");
+                string userparam = Console.ReadLine();
+                messageArgs = userparam.Split(',');
+
+                try
+                {
+                    twitchChatBot.SendWhisper(messageArgs[0], messageArgs[1]);
+                }
+                catch
+                {
+                    Console.WriteLine("BOT -- please enter something valid");
+                    goto EnterCommand;
+                }
+            }
+            // rest of commands TODO:
+        }
+
+        private void sendToChatWindow(string )
+        {
+            Chat
         }
     }
 }
